@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HEROES } from './mock-heroes'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {  Hero } from './hero'
 import { Observable, of } from 'rxjs'
 import { MessageService } from './message.service'
@@ -8,17 +8,18 @@ import { MessageService } from './message.service'
 })
 export class HeroService {
   heroes: Observable<Hero[]>;
+  private heroesUrl ='api/heroes'; //url to web API using In Memory
   constructor(
-    private messageService: MessageService
+    private messageService: MessageService,
+    private http: HttpClient,
+
   ) { }
 
-  getHeroes(): Observable<Hero[]>{
-    this.messageService.add("HeroService: fetched heroes");
-    return of(HEROES);
+  private log(message: String){
+    this.messageService.add(`HeroService: ${message}`);
   }
 
-  getHero(id: Number): Observable<Hero>{
-    this.messageService.add(`HeroService: fetched Hero Id : ${id}`);
-    return of(HEROES.find(hero => hero.id === id ));
+  getHeroes(): Observable<Hero[]>{
+    return this.http.get<Hero[]>(this.heroesUrl);
   }
 }

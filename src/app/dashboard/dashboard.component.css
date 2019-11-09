@@ -38,7 +38,7 @@ h4 {
   border-radius: 2px;
 }
 .module:hover {
-  background-color: #eee;
+  background-color: #EEE;
   cursor: pointer;
   color: #607d8b;
 }
@@ -61,3 +61,10 @@ h4 {
     min-width: 60px;
   }
 }
+
+
+/*
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+*/
